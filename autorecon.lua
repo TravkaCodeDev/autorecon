@@ -1,5 +1,5 @@
 script_author("travkacode")
-script_description("Авто рекон за варнингом")
+script_description("auto recon for warnings")
 
 require('lib.moonloader')
 local tag        = "{96c8a2}[ travkasystem ]{ffffff}: "
@@ -126,24 +126,24 @@ local mainMenu = imgui.OnFrame(
     function() return window[0] end,
     function(this)local size, res = imgui.ImVec2(250,240), imgui.ImVec2(getScreenResolution())
         imgui.SetNextWindowPos(imgui.ImVec2(res.x / 2, res.y / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-        if imgui.Begin(u8'Авто рекон ', window, imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize + imgui.WindowFlags.NoCollapse) then
-            imgui.Text(u8"Обработка варнингов")
-            if imgui.Checkbox(u8'Замена варнингов', warnings) then
-                sampAddChatMessage(tag .. '{ffffff}Замена варнингов: ' .. (warnings[0] and '{4be956}Включена' or '{ff0000}Выключена'), -1)
+        if imgui.Begin(u8'Auto recon ', window, imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize + imgui.WindowFlags.NoCollapse) then
+            imgui.Text(u8"Warnings")
+            if imgui.Checkbox(u8'Replace warnings', warnings) then
+                sampAddChatMessage(tag .. '{ffffff}Replace warnings: ' .. (warnings[0] and '{4be956}on' or '{ff0000}off'), -1)
                 config.autoreconSettings.warnings = not config.autoreconSettings.warnings
                 inicfg.save(config, file)
             end
-            imgui.Hint("OLD: <Warning> Player Nick[111]: Возможно cheat name (111 lvl)\nNEW: 111 LVL | Player Nick[111], cheat: cheat name (2 => /re 111) | при включенном авто реконе") --lvl,nick,id,cheat,autoreconText
+            --imgui.Hint("OLD: <Warning> Player Nick[111]: Возможно cheat name (111 lvl)\nNEW: 111 LVL | Player Nick[111], cheat: cheat name (2 => /re 111) | при включенном авто реконе") --lvl,nick,id,cheat,autoreconText
 
-            if imgui.Checkbox(u8'Авто рекон за варнингом', autorecon) then
+            if imgui.Checkbox(u8'auto recon for warnings', autorecon) then
                 
-                sampAddChatMessage(tag .. '{ffffff}Авто рекон: ' .. (autorecon[0] and '{4be956}Включен' or '{ff0000}Выключен'), -1)
+                sampAddChatMessage(tag .. '{ffffff}Auto recon: ' .. (autorecon[0] and '{4be956}on' or '{ff0000}off'), -1)
                 config.autoreconSettings.warnings = not config.autoreconSettings.warnings
                 config.autoreconSettings.autorecon = not config.autoreconSettings.autorecon
                 inicfg.save(config, file)
             end
 
-            imgui.Hint("При нажатии на ( 2 ) вы войдете в рекон за последним варнингом")
+            imgui.Hint("When you click on ( 2 ), you will enter the recon for the last warning")
             imgui.Separator()
             imgui.CenterText("created by travkacode")
 
@@ -158,8 +158,8 @@ function main()
     if not isSampLoaded() or not isSampfuncsLoaded() then return end
     while not isSampAvailable() do wait(100) end
     sampAddChatMessage('[ travkasystem ]: {4be956}activated', 0x96c8a2)
-    print("Скрипт успешно загружен!")
-    print("Настройки скрипта: {4be956}/autorecon")
+    print("script loaded!")
+    print("settings: {4be956}/autorecon")
     print("created by "..dev)
     addEventHandler('onWindowMessage', function(msg, wparam)
         if msg == wm.WM_KEYDOWN or msg == wm.WM_SYSKEYDOWN then
