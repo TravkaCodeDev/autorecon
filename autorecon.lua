@@ -10,6 +10,7 @@ local imgui      = require('mimgui')
 u8               = encoding.UTF8
 local file       = 'moonloader/autorecon.ini'
 local config     = inicfg.load({autoreconSettings},file)
+local dialogActive = false
 inicfg.save(config,file)
 
 
@@ -160,10 +161,11 @@ function main()
     addEventHandler('onWindowMessage', function(msg, wparam)
         if msg == wm.WM_KEYDOWN or msg == wm.WM_SYSKEYDOWN then
             if wparam == vkeys.VK_2 then
-                if not sampIsChatInputActive() and autorecon[0] == true then -- Проверка на открытый чат
-                    sampSendChat('/re '..config.autoreconSettings.lastuserID)
+                if dialogActive == false then
+                    if not sampIsChatInputActive() and autorecon[0] == true then -- Проверка на открытый чат
+                        sampSendChat('/re '..config.autoreconSettings.lastuserID)
+                    end
                 end
-
             end
         end
     end)
@@ -174,6 +176,11 @@ function main()
 
     while true do
         wait(0)
+        if sampIsDialogActive() then
+            dialogActive = true
+        else
+            dialogActive = false
+        end
     end
 end
 
