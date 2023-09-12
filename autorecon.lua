@@ -162,7 +162,7 @@ function main()
         if msg == wm.WM_KEYDOWN or msg == wm.WM_SYSKEYDOWN then
             if wparam == vkeys.VK_2 then
                 if dialogActive == false then
-                    if not sampIsChatInputActive() and autorecon[0] == true then -- Проверка на открытый чат
+                    if not sampIsChatInputActive() and autorecon[0] == true then
                         sampSendChat('/re '..config.autoreconSettings.lastuserID)
                     end
                 end
@@ -171,7 +171,7 @@ function main()
     end)
 
     sampRegisterChatCommand('autorecon', function ()
-        window[0] = not window[0] -- Переключаем состояние рендера
+        window[0] = not window[0]
     end)
 
     while true do
