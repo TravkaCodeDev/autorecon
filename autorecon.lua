@@ -2,17 +2,17 @@ script_author("travkacode")
 script_description("Авто рекон за варнингом")
 
 require('lib.moonloader')
-local tag          = "{96c8a2}[ travkasystem ]{ffffff}: "
-local encoding     = require('encoding')
-encoding.default   = "CP1251"
-local samp         = require 'lib.samp.events'
-local inicfg       = require 'inicfg'
-local vkeys        = require 'vkeys'
-local wm           = require 'windows.message'
-local imgui        = require('mimgui')
-u8                 = encoding.UTF8
-local file         = 'moonloader/autorecon.ini'
-local config       = inicfg.load({autoreconSettings},file)
+local tag        = "{96c8a2}[ travkasystem ]{ffffff}: "
+local encoding   = require('encoding')
+encoding.default = "CP1251"
+local samp       = require 'lib.samp.events'
+local inicfg     = require 'inicfg'
+local vkeys      = require 'vkeys'
+local wm         = require 'windows.message'
+local imgui      = require('mimgui')
+u8               = encoding.UTF8
+local file       = 'moonloader/autorecon.ini'
+local config     = inicfg.load({autoreconSettings},file)
 local dialogActive = false
 inicfg.save(config,file)
 
@@ -21,78 +21,78 @@ function ThemeLite()
     local style = imgui.GetStyle()
     local colors = style.Colors
 
-    style.Alpha = 1;
-    style.WindowPadding = imgui.ImVec2(8.00, 8.00);
-    style.WindowRounding = 7;
-    style.WindowBorderSize = 1;
-    style.WindowMinSize = imgui.ImVec2(32.00, 32.00);
-    style.WindowTitleAlign = imgui.ImVec2(0.5, 0.5);
-    style.ChildRounding = 0;
-    style.ChildBorderSize = 1;
-    style.PopupRounding = 0;
-    style.PopupBorderSize = 1;
-    style.FramePadding = imgui.ImVec2(4.00, 3.00);
-    style.FrameRounding = 15;
-    style.FrameBorderSize = 0;
-    style.ItemSpacing = imgui.ImVec2(8.00, 4.00);
-    style.ItemInnerSpacing = imgui.ImVec2(4.00, 4.00);
-    style.IndentSpacing = 21;
-    style.ScrollbarSize = 14;
-    style.ScrollbarRounding = 9;
-    style.GrabMinSize = 10;
-    style.GrabRounding = 15;
-    style.TabRounding = 4;
-    style.ButtonTextAlign = imgui.ImVec2(0.50, 0.50);
-    style.SelectableTextAlign = imgui.ImVec2(0.00, 0.00);
+    style.Alpha                             = 1;
+    style.WindowPadding                     = imgui.ImVec2(8.00, 8.00);
+    style.WindowRounding                    = 7;
+    style.WindowBorderSize                  = 1;
+    style.WindowMinSize                     = imgui.ImVec2(32.00, 32.00);
+    style.WindowTitleAlign                  = imgui.ImVec2(0.5, 0.5);
+    style.ChildRounding                     = 0;
+    style.ChildBorderSize                   = 1;
+    style.PopupRounding                     = 0;
+    style.PopupBorderSize                   = 1;
+    style.FramePadding                      = imgui.ImVec2(4.00, 3.00);
+    style.FrameRounding                     = 15;
+    style.FrameBorderSize                   = 0;
+    style.ItemSpacing                       = imgui.ImVec2(8.00, 4.00);
+    style.ItemInnerSpacing                  = imgui.ImVec2(4.00, 4.00);
+    style.IndentSpacing                     = 21;
+    style.ScrollbarSize                     = 14;
+    style.ScrollbarRounding                 = 9;
+    style.GrabMinSize                       = 10;
+    style.GrabRounding                      = 15;
+    style.TabRounding                       = 4;
+    style.ButtonTextAlign                   = imgui.ImVec2(0.50, 0.50);
+    style.SelectableTextAlign               = imgui.ImVec2(0.00, 0.00);
 
-    colors[imgui.Col.Text] = imgui.ImVec4(0.00, 0.00, 0.00, 1.00);
-    colors[imgui.Col.TextDisabled] = imgui.ImVec4(0.60, 0.60, 0.60, 1.00);
-    colors[imgui.Col.WindowBg] = imgui.ImVec4(0.94, 0.94, 0.94, 1.00);
-    colors[imgui.Col.ChildBg] = imgui.ImVec4(0.00, 0.00, 0.00, 0.00);
-    colors[imgui.Col.PopupBg] = imgui.ImVec4(1.00, 1.00, 1.00, 0.98);
-    colors[imgui.Col.Border] = imgui.ImVec4(0.00, 0.00, 0.00, 0.30);
-    colors[imgui.Col.BorderShadow] = imgui.ImVec4(0.00, 0.00, 0.00, 0.00);
-    colors[imgui.Col.FrameBg] = imgui.ImVec4(1.00, 1.00, 1.00, 1.00);
-    colors[imgui.Col.FrameBgHovered] = imgui.ImVec4(0.26, 0.59, 0.98, 0.40);
-    colors[imgui.Col.FrameBgActive] = imgui.ImVec4(0.26, 0.59, 0.98, 0.67);
-    colors[imgui.Col.TitleBg] = imgui.ImVec4(0.96, 0.96, 0.96, 1.00);
-    colors[imgui.Col.TitleBgActive] = imgui.ImVec4(255, 255, 255, 255);
-    colors[imgui.Col.TitleBgCollapsed] = imgui.ImVec4(1.00, 1.00, 1.00, 0.51);
-    colors[imgui.Col.MenuBarBg] = imgui.ImVec4(0.86, 0.86, 0.86, 1.00);
-    colors[imgui.Col.ScrollbarBg] = imgui.ImVec4(0.98, 0.98, 0.98, 0.53);
-    colors[imgui.Col.ScrollbarGrab] = imgui.ImVec4(0.69, 0.69, 0.69, 0.80);
-    colors[imgui.Col.ScrollbarGrabHovered] = imgui.ImVec4(0.49, 0.49, 0.49, 0.80);
-    colors[imgui.Col.ScrollbarGrabActive] = imgui.ImVec4(0.49, 0.49, 0.49, 1.00);
-    colors[imgui.Col.CheckMark] = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
-    colors[imgui.Col.SliderGrab] = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
-    colors[imgui.Col.SliderGrabActive] = imgui.ImVec4(0.46, 0.54, 0.80, 0.60);
-    colors[imgui.Col.Button] = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
-    colors[imgui.Col.ButtonHovered] = imgui.ImVec4(0.26, 0.59, 0.98, 1.00);
-    colors[imgui.Col.ButtonActive] = imgui.ImVec4(0.06, 0.53, 0.98, 1.00);
-    colors[imgui.Col.Header] = imgui.ImVec4(0.26, 0.59, 0.98, 0.31);
-    colors[imgui.Col.HeaderHovered] = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
-    colors[imgui.Col.HeaderActive] = imgui.ImVec4(0.26, 0.59, 0.98, 1.00);
-    colors[imgui.Col.Separator] = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
-    colors[imgui.Col.SeparatorHovered] = imgui.ImVec4(0.14, 0.44, 0.80, 0.78);
-    colors[imgui.Col.SeparatorActive] = imgui.ImVec4(0.14, 0.44, 0.80, 1.00);
-    colors[imgui.Col.ResizeGrip] = imgui.ImVec4(0.80, 0.80, 0.80, 0.56);
-    colors[imgui.Col.ResizeGripHovered] = imgui.ImVec4(0.26, 0.59, 0.98, 0.67);
-    colors[imgui.Col.ResizeGripActive] = imgui.ImVec4(0.26, 0.59, 0.98, 0.95);
-    colors[imgui.Col.Tab] = imgui.ImVec4(0.76, 0.80, 0.84, 0.93);
-    colors[imgui.Col.TabHovered] = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
-    colors[imgui.Col.TabActive] = imgui.ImVec4(0.60, 0.73, 0.88, 1.00);
-    colors[imgui.Col.TabUnfocused] = imgui.ImVec4(0.92, 0.93, 0.94, 0.99);
-    colors[imgui.Col.TabUnfocusedActive] = imgui.ImVec4(0.74, 0.82, 0.91, 1.00);
-    colors[imgui.Col.PlotLines] = imgui.ImVec4(0.39, 0.39, 0.39, 1.00);
-    colors[imgui.Col.PlotLinesHovered] = imgui.ImVec4(1.00, 0.43, 0.35, 1.00);
-    colors[imgui.Col.PlotHistogram] = imgui.ImVec4(0.90, 0.70, 0.00, 1.00);
-    colors[imgui.Col.PlotHistogramHovered] = imgui.ImVec4(1.00, 0.45, 0.00, 1.00);
-    colors[imgui.Col.TextSelectedBg] = imgui.ImVec4(0.26, 0.59, 0.98, 0.35);
-    colors[imgui.Col.DragDropTarget] = imgui.ImVec4(0.26, 0.59, 0.98, 0.95);
-    colors[imgui.Col.NavHighlight] = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
+    colors[imgui.Col.Text]                  = imgui.ImVec4(0.00, 0.00, 0.00, 1.00);
+    colors[imgui.Col.TextDisabled]          = imgui.ImVec4(0.60, 0.60, 0.60, 1.00);
+    colors[imgui.Col.WindowBg]              = imgui.ImVec4(0.94, 0.94, 0.94, 1.00);
+    colors[imgui.Col.ChildBg]               = imgui.ImVec4(0.00, 0.00, 0.00, 0.00);
+    colors[imgui.Col.PopupBg]               = imgui.ImVec4(1.00, 1.00, 1.00, 0.98);
+    colors[imgui.Col.Border]                = imgui.ImVec4(0.00, 0.00, 0.00, 0.30);
+    colors[imgui.Col.BorderShadow]          = imgui.ImVec4(0.00, 0.00, 0.00, 0.00);
+    colors[imgui.Col.FrameBg]               = imgui.ImVec4(1.00, 1.00, 1.00, 1.00);
+    colors[imgui.Col.FrameBgHovered]        = imgui.ImVec4(0.26, 0.59, 0.98, 0.40);
+    colors[imgui.Col.FrameBgActive]         = imgui.ImVec4(0.26, 0.59, 0.98, 0.67);
+    colors[imgui.Col.TitleBg]               = imgui.ImVec4(0.96, 0.96, 0.96, 1.00);
+    colors[imgui.Col.TitleBgActive]         = imgui.ImVec4(255, 255, 255, 255);
+    colors[imgui.Col.TitleBgCollapsed]      = imgui.ImVec4(1.00, 1.00, 1.00, 0.51);
+    colors[imgui.Col.MenuBarBg]             = imgui.ImVec4(0.86, 0.86, 0.86, 1.00);
+    colors[imgui.Col.ScrollbarBg]           = imgui.ImVec4(0.98, 0.98, 0.98, 0.53);
+    colors[imgui.Col.ScrollbarGrab]         = imgui.ImVec4(0.69, 0.69, 0.69, 0.80);
+    colors[imgui.Col.ScrollbarGrabHovered]  = imgui.ImVec4(0.49, 0.49, 0.49, 0.80);
+    colors[imgui.Col.ScrollbarGrabActive]   = imgui.ImVec4(0.49, 0.49, 0.49, 1.00);
+    colors[imgui.Col.CheckMark]             = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
+    colors[imgui.Col.SliderGrab]            = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
+    colors[imgui.Col.SliderGrabActive]      = imgui.ImVec4(0.46, 0.54, 0.80, 0.60);
+    colors[imgui.Col.Button]                = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
+    colors[imgui.Col.ButtonHovered]         = imgui.ImVec4(0.26, 0.59, 0.98, 1.00);
+    colors[imgui.Col.ButtonActive]          = imgui.ImVec4(0.06, 0.53, 0.98, 1.00);
+    colors[imgui.Col.Header]                = imgui.ImVec4(0.26, 0.59, 0.98, 0.31);
+    colors[imgui.Col.HeaderHovered]         = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
+    colors[imgui.Col.HeaderActive]          = imgui.ImVec4(0.26, 0.59, 0.98, 1.00);
+    colors[imgui.Col.Separator]             = imgui.ImVec4(0.24, 1.00, 0.00, 1.00);
+    colors[imgui.Col.SeparatorHovered]      = imgui.ImVec4(0.14, 0.44, 0.80, 0.78);
+    colors[imgui.Col.SeparatorActive]       = imgui.ImVec4(0.14, 0.44, 0.80, 1.00);
+    colors[imgui.Col.ResizeGrip]            = imgui.ImVec4(0.80, 0.80, 0.80, 0.56);
+    colors[imgui.Col.ResizeGripHovered]     = imgui.ImVec4(0.26, 0.59, 0.98, 0.67);
+    colors[imgui.Col.ResizeGripActive]      = imgui.ImVec4(0.26, 0.59, 0.98, 0.95);
+    colors[imgui.Col.Tab]                   = imgui.ImVec4(0.76, 0.80, 0.84, 0.93);
+    colors[imgui.Col.TabHovered]            = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
+    colors[imgui.Col.TabActive]             = imgui.ImVec4(0.60, 0.73, 0.88, 1.00);
+    colors[imgui.Col.TabUnfocused]          = imgui.ImVec4(0.92, 0.93, 0.94, 0.99);
+    colors[imgui.Col.TabUnfocusedActive]    = imgui.ImVec4(0.74, 0.82, 0.91, 1.00);
+    colors[imgui.Col.PlotLines]             = imgui.ImVec4(0.39, 0.39, 0.39, 1.00);
+    colors[imgui.Col.PlotLinesHovered]      = imgui.ImVec4(1.00, 0.43, 0.35, 1.00);
+    colors[imgui.Col.PlotHistogram]         = imgui.ImVec4(0.90, 0.70, 0.00, 1.00);
+    colors[imgui.Col.PlotHistogramHovered]  = imgui.ImVec4(1.00, 0.45, 0.00, 1.00);
+    colors[imgui.Col.TextSelectedBg]        = imgui.ImVec4(0.26, 0.59, 0.98, 0.35);
+    colors[imgui.Col.DragDropTarget]        = imgui.ImVec4(0.26, 0.59, 0.98, 0.95);
+    colors[imgui.Col.NavHighlight]          = imgui.ImVec4(0.26, 0.59, 0.98, 0.80);
     colors[imgui.Col.NavWindowingHighlight] = imgui.ImVec4(0.70, 0.70, 0.70, 0.70);
-    colors[imgui.Col.NavWindowingDimBg] = imgui.ImVec4(0.20, 0.20, 0.20, 0.20);
-    colors[imgui.Col.ModalWindowDimBg] = imgui.ImVec4(0.20, 0.20, 0.20, 0.35);
+    colors[imgui.Col.NavWindowingDimBg]     = imgui.ImVec4(0.20, 0.20, 0.20, 0.20);
+    colors[imgui.Col.ModalWindowDimBg]      = imgui.ImVec4(0.20, 0.20, 0.20, 0.35);
 end
 
 imgui.OnInitialize(function ()
@@ -114,7 +114,7 @@ end
 
 function imgui.CenterText(text)
     local width = imgui.GetWindowWidth()
-    local calc = imgui.CalcTextSize(text)
+    local calc  = imgui.CalcTextSize(text)
     imgui.SetCursorPosX( width / 2 - calc.x / 2 )
     imgui.Text(text)
 end
@@ -165,7 +165,7 @@ function main()
         if msg == wm.WM_KEYDOWN or msg == wm.WM_SYSKEYDOWN then
             if wparam == vkeys.VK_2 then
                 if dialogActive == false then
-                    if not sampIsChatInputActive() and autorecon[0] == true then
+                    if not sampIsChatInputActive() and autorecon[0] == true then -- Проверка на открытый чат
                         sampSendChat('/re '..config.autoreconSettings.lastuserID)
                     end
                 end
@@ -174,7 +174,7 @@ function main()
     end)
 
     sampRegisterChatCommand('autorecon', function ()
-        window[0] = not window[0]
+        window[0] = not window[0] -- Переключаем состояние рендера
     end)
 
     while true do
