@@ -1,15 +1,18 @@
+script_author("travkacode")
+script_description("Авто рекон за варнингом")
+
 require('lib.moonloader')
-local tag        = "{96c8a2}[ travkasystem ]{ffffff}: "
-local encoding   = require('encoding')
-encoding.default = "CP1251"
-local samp       = require 'lib.samp.events'
-local inicfg     = require 'inicfg'
-local vkeys      = require 'vkeys'
-local wm         = require 'windows.message'
-local imgui      = require('mimgui')
-u8               = encoding.UTF8
-local file       = 'moonloader/autorecon.ini'
-local config     = inicfg.load({autoreconSettings},file)
+local tag          = "{96c8a2}[ travkasystem ]{ffffff}: "
+local encoding     = require('encoding')
+encoding.default   = "CP1251"
+local samp         = require 'lib.samp.events'
+local inicfg       = require 'inicfg'
+local vkeys        = require 'vkeys'
+local wm           = require 'windows.message'
+local imgui        = require('mimgui')
+u8                 = encoding.UTF8
+local file         = 'moonloader/autorecon.ini'
+local config       = inicfg.load({autoreconSettings},file)
 local dialogActive = false
 inicfg.save(config,file)
 
